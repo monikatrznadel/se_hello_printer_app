@@ -24,5 +24,5 @@ class TestFormater(unittest.TestCase):
     def test_plain_text(self):
         name = 'Basia'
         msg = 'Hi'
-        result = plain_text(msg,name)
+        result = plain_text(msg, name)
         self.assertEqual(result, name + ' ' + msg)
