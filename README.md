@@ -1,3 +1,8 @@
+- Monitoring
+[![Build](https://travis-ci.org/monikatrznadel/se_hello_printer_app.svg?branch=master)](https://travis-ci.org/monikatrznadel/se_hello_printer_app.svg?branch=master)
+[![Uptime](https://app.statuscake.com/button/index.php?Track=5902156)](https://app.statuscake.com/button/index.php?Track=5902156)
+
+
 # Simple Flask App
 
 Aplikacja Dydaktyczna wyświetlająca imię i wiadomość w różnych formatach dla zajęć
@@ -82,4 +87,5 @@ o Continuous Integration, Continuous Delivery i Continuous Deployment.
   $ yum makecache fast
   $ yum install -y docker-ce
   $ systemctl start docker
+
   ```
