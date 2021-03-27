@@ -1,0 +1,21 @@
+#!/bin/bash
+if `which docker > /dev/null`; then
+	if [ $# -eq 0 ]; then
+  		docker run -v $PWD:/scan -it licensefinder/license_finder
+	else
+  		docker run -v $PWD:/scan -it licensefinder/license_finder /bin/bash -lc "cd /scan && `echo $@`"
+	fi
+else
+  echo "You do not have docker installed. Please install it:"
+  echo "    https://docs.docker.com/engine/installation/"
+  exit 1
+fi
+
+
+#Flask, 1.1.2, "New BSD"
+#Jinja2, 2.11.3, "New BSD"
+#MarkupSafe, 1.1.1, "New BSD"
+#Werkzeug, 1.0.1, "New BSD"
+#click, 7.1.2, "New BSD"
+#gunicorn, 19.10.0, MIT
+#itsdangerous, 1.1.0, BSD
