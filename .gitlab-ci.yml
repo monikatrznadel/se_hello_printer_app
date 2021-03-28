@@ -2,9 +2,9 @@ test:
   image: "python:3"
   stage: test
   script:
-    - pip install -r requirements.txt
-    - pip install -r test_requirements.txt
-    - PYTHONPATH=. py.test --verbose -s
+    - apk add --update make
+    - make deps
+    - make test
 
 stages:
 - test
@@ -23,4 +23,5 @@ docker:
     - docker:dind
   stage: docker_build
   script:
-    - docker build -t myapp .
+    - apk add --update make
+    - make docker_build
