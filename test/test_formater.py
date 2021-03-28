@@ -5,6 +5,8 @@ from hello_world.formater import plain_text
 from hello_world.formater import format_to_json
 
 import unittest
+import json
+import xml.etree.cElementTree as ET
 
 
 class TestFormater(unittest.TestCase):
@@ -26,22 +28,22 @@ class TestFormater(unittest.TestCase):
         name = "Krysia"
         msg = "Hello"
         result = format_to_xml(msg, name)
-        self.assertEqual(
-            result,
-            b"<greetings><name>Krysia</name><msg>Hello</msg></greetings>"
-        )
+        actual = ET.fromstring(result)
+        actualName = actual.find("name")
+        actualMsg = actual.find("msg")
+        self.assertEqual(name, actualName.text)
+        self.assertEqual(msg, actualMsg.text)
 
     def test_format_to_json(self):
         name = "Kasia"
         msg = "How are you?"
-        result = format_to_json(msg, name)
-        self.assertEqual(
-            result,
-            '{"imie": "' + name + '", "msg": "' + msg + '"}'
-        )
+        actual = json.loads(format_to_json(msg, name))
+        self.assertEqual(name, actual['imie'])
+        self.assertEqual(msg, actual['msg'])
 
     def test_plain_text(self):
         name = "Basia"
         msg = "Hi"
         result = plain_text(msg, name)
-        self.assertEqual(result, name + " " + msg)
+        self.assertEqual(name, result.split(" ")[0])
+        self.assertEqual(msg, result.split(" ")[1])

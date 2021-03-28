@@ -1,4 +1,5 @@
 import unittest
+import json
 from hello_world import app
 from hello_world.formater import SUPPORTED
 
@@ -15,8 +16,13 @@ class FlaskrTestCase(unittest.TestCase):
 
     def test_msg_with_output(self):
         rv = self.app.get('/?output=json')
-        self.assertEqual(b'{"imie": "Maria", "msg": "Hello World!"}', rv.data)
+        expected = {'imie': 'Maria', 'msg': 'Hello World!'}
+        actual = json.loads(rv.data)
+        self.assertEqual(expected['imie'], actual['imie'])
+        self.assertEqual(expected['msg'], actual['msg'])
 
     def test_message_output_with_name(self):
-        rv = self.app.get('/?output=json&name=Anna')
-        self.assertEqual(b'{"imie": "Anna", "msg": "Hello World!"}', rv.data)
+        expected_name = 'Natalia'
+        rv = self.app.get('/?output=json&name={0}'.format(expected_name))
+        actual = json.loads(rv.data)
+        self.assertEqual(expected_name, actual['imie'])
