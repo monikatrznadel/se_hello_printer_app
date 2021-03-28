@@ -42,6 +42,7 @@ pipeline {
         onlyStable: false,
         sourceEncoding: 'ASCII',
         zoomCoverageChart: false
+      chuckNorris()
     }
   }
 }
