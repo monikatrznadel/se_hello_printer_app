@@ -1,4 +1,5 @@
 .PHONY: test
+.PHONY: test_api
 
 deps:
 	pip install -r requirements.txt
@@ -42,3 +43,6 @@ test_xunit:
 
 test_covhtml:
 		PYTHONPATH=. py.test -s --cov=. --cov-report html
+
+test_api:
+	python3 test_api/check_api.py
